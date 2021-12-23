@@ -1,0 +1,99 @@
+<nav class="navbar navbar-dark navbar-expand-lg  bg-primary">
+ <i  class='navbar-brand'>hello {{user.name}}</i>
+   
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+  <div class="collapse navbar-collapse" id="navbarText">
+<ul class="navbar-nav mr-auto  mt-2 mt-lg-0 ">
+   
+          <li class="nav-item ">
+     	 <a   routerLink="/"   class="nav-link ">
+     	   main
+     	 </a>
+          </li>
+	   <li class="nav-item active ">
+     	 <a   routerLink="/addtodolist"  routerLinkActive="active" class="nav-link ">
+     	  +Todolist
+     	 </a>
+	   </li>
+ 
+    <li class="nav-item">
+         <a (click)=logout() class=" nav-link "    >deconnecter</a>
+      		
+    </li>
+    
+     
+</ul> 
+    
+  </div>
+ 
+
+
+
+</nav>
+
+<div class="container">
+
+
+
+    <h2  class=" text-center text-primary" >Nouvelle todolist </h2>
+    <form   name="form" (ngSubmit)='f.form.valid  &&  newtodolist()' #f="ngForm" novalidate>
+        
+       <div class="form-group text-primary " >
+            <label for="title"> Titre </label>
+            <input type="text" class="form-control" name="title" [(ngModel)]="model.title" #title="ngModel"
+             required  minlength=5  maxlength=30  />
+            <div  *ngIf="f.submitted && title.hasError('required')" class=" alert alert-danger help-block">Le titre est obligatoire</div>
+            <div  *ngIf=" title.hasError('minlength')" class="help-block alert alert-danger ">Le titre doit contenir au moins 5 caractères</div>
+       	   
+      </div> 
+    
+           
+      <div class="form-group "  >
+    	 <label  for="categories">Categorie</label>
+  		
+         <ngx-select-dropdown   [config]="config"  [options]="categories" name='categorie'  [(ngModel)]="model.categorie" [multiple]="false" ></ngx-select-dropdown>     
+         <div  *ngIf="f.submitted && model.categorie.length==0" class="help-block alert alert-danger">Choisissez au moins une catégorie</div>
+         
+       
+  
+  
+  	  </div>
+  	  
+         
+     
+   
+   
+                  
+        
+        
+      <div class=" form-group"  >
+            <label  for="desc"> Tâches</label>
+            <textarea rows="6" class="form-control" name="tasks" required [(ngModel)]="model.tasks" maxlength="800" #tasks="ngModel"  ></textarea>
+            <div  *ngIf="f.submitted && tasks.hasError('required')" class="help-block alert alert-danger"> Ajoutez vos taches</div>
+       	    <div   *ngIf="f.submitted &&  tasks.hasError('maxlength')" class="help-block alert alert-danger"> trop long</div>
+
+      	  
+      	    
+     </div>
+     	 
+     	
+        
+        <div class="form-group" >
+              <button  [disabled]="loading" class="btn btn-primary" >Envoyer</button>
+              <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+			       
+			           
+              <a  [routerLink]="['/']" class="btn btn-link">Annuler</a>
+         
+        </div>
+           
+    </form>
+
+
+
+
+</div>

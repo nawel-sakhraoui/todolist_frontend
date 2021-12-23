@@ -1,0 +1,151 @@
+
+<br><br> <br>
+<div  *ngIf="!done" class="container col-8 col-md-4">
+<div class=" card">
+<h4 class="card-title">s'enregistrer</h4>
+  <div class=" card  card-body">
+ 
+    <form
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+
+       <div class="form-group">
+        <label for="username">email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          [(ngModel)]="form.email"
+          required
+          #email="ngModel"
+        />
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="email.errors && f.submitted"
+        >
+         veuillez rentrer votre addresse email 
+        </div>
+<div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && erroremail"
+        >
+         Cet email existe deja 
+        </div>
+ 		<div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && erroremail2"
+        >
+         Veuillez verifier votre addresse 
+        </div>
+      </div>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Nom</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          [(ngModel)]="form.username"
+          required
+          #username="ngModel"
+        />
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="username.errors && f.submitted"
+        >
+          veuillez rentrer votre nom 
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="password">mot de passe</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          #password="ngModel"
+        />
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="password.errors && f.submitted"
+        >
+          <div *ngIf="password.errors?.['required']">mot de passe obligatoire</div>
+          <div *ngIf="password.errors?.['minlength']">
+            votre mot de passe doit contenir au moins 6 caractères
+          </div>
+        </div>
+      </div>
+            <div class="form-group">
+        <label for="password">entrer le meme mot de passe</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password2"
+          [(ngModel)]="form.password2"
+          required
+          minlength="6"
+          #password2="ngModel"
+        />
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="password2.errors && f.submitted"
+        >
+          <div *ngIf="password2.errors?.['required']">mot de passe obligatoire</div>
+          <div *ngIf="password2.errors?.['minlength']">
+           votre mot de passe doit contenir au moins 6 caractères
+          </div>
+        </div>
+
+         <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="form.password!=form.password2 && f.submitted"
+          >
+           les 2 mots de passe doivent etre identique
+        </div>
+      </div><br>
+      <div class="form-group row">
+        <button class="btn btn-primary ">
+           S'enregistrer
+        </button>
+
+		<a [routerLink]="['../login']"  class="btn btn-link " >
+           Se Connecter
+        </a>
+      </div>
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && isLoginFailed"
+        >
+         erreur d'enregistrement
+        </div>
+      </div>
+    </form>
+
+  </div></div>
+  </div>
+
+<div  *ngIf="done" class="container col-8 col-md-4">
+
+    <p>Votre compte a bien été enregistré consulter votre email pour la validation ' 
+</p>
+</div>
+
+

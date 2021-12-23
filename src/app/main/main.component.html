@@ -1,0 +1,67 @@
+
+ 
+
+<nav class="navbar navbar-dark navbar-expand-lg  bg-primary">
+ <i  class='navbar-brand'>Hello {{user.name}}</i>
+   
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+  <div class="collapse navbar-collapse" id="navbarText">
+<ul class="navbar-nav mr-auto  mt-2 mt-lg-0 ">
+   
+          <li class="nav-item active">
+     	 <a   routerLink="/"  routerLinkActive="active" class="nav-link ">
+     	   main
+     	 </a>
+          </li>
+	   <li class="nav-item">
+     	 <a   routerLink="/addtodolist"   class="nav-link ">
+     	  +Todolist
+     	 </a>
+	   </li>
+ 
+    <li class="nav-item">
+         <a (click)=logout() class=" nav-link "    >deconnecter</a>
+      		
+    </li>
+    
+     
+</ul> 
+    
+  </div>
+ 
+
+
+
+</nav>
+
+<div class="container">
+<div  *ngIf='todolists.length==0' >
+ <p> Vous n'avez aps encore de todolist  vous pouvez en ajouter en cliquant sur le boutton si dessous'</p>
+
+
+</div>
+
+
+<div *ngIf='todolists.length!=0' class="container row  ">
+ <p>si dessous vos todolist </p>
+<div *ngFor='let c of categories ' class=" card col-4 col-md-4">
+<h4 class="card-title"> {{c }}</h4>
+  <div   class="  card-body">
+          <div *ngFor='let todo of todolists'>
+				<div *ngIf='c== todo.categorie ' class="card">
+				     <h5 class="card-title"> {{todo.title }}</h5>
+						  <p   class="  card-body">{{todo.tasks}}</p>
+				</div>
+          </div>
+  </div></div>
+
+
+
+
+</div>
+<button class="btn btn-primary" routerLink="/addtodolist"  >+  todolist </button>
+</div> 

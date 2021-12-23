@@ -1,0 +1,9 @@
+<div class='container' *ngIf="!alreadyvalidate">
+
+
+<p *ngIf='!notvalidate'>validation ...</p>
+<p *ngIf='notvalidate'> Problème de validation de votre token</p>
+
+</div>
+
+<p *ngIf='alreadyvalidate'>cet Email a déja été validé !</p>
